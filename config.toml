@@ -1,0 +1,7 @@
+theme = "hugo_theme_beg"
+baseURL = "https://davidemagno.github.io/"
+publishDir = "."
+languageCode = "en-us"
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+enableEmoji = true
+title = "My New Hugo Site"
