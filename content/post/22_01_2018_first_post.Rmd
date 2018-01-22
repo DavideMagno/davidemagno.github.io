@@ -4,7 +4,6 @@ author: "Davide Magno"
 date: "2018-01-22"
 output: html_document
 categories: [personal]
-tags: []
 ---
 
 Welcome to my blog! I have been working in Financial Risk Management for the last 10+ years in financial instiutions for both Funds and Insurance.
