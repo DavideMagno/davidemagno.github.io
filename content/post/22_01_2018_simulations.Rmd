@@ -3,6 +3,8 @@ title: "Generate scenarios correlated to existing ones"
 author: "Davide Magno"
 date: "2018-01-29"
 output: html_document
+categories: [simulations]
+tags: [R, simulations]
 ---
 
 ```{r setup, include=FALSE}

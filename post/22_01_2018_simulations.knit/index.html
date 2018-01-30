@@ -8,7 +8,7 @@
 
 
 
-<link rel="canonical" href="/post/22_01_2018_simulations/">
+<link rel="canonical" href="/post/22_01_2018_simulations.knit/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
@@ -16,21 +16,21 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
     <title>Generate scenarios correlated to existing ones - The cuRious Risk ManageR</title>
     
-<meta name="description" content="In quantitative finance we often look at simulations of some market risk factors like equity returns or interest rate changes.There are many third party companies who specialize in the historical calibration of such variables and provide simulations of future expected outcomes to the companies who require them.For example, let’s suppose that we receive the expected returns of the Google shares as per the following distribution# This modelling is given by the third party and in theory we don&amp;#39;t know it google &amp;lt;- rnorm(10000, mean = 0.">
+<meta name="description" content="In quantitative finance we often look at simulations of some market risk factors like equity returns or interest rate changes.There are many third party companies who specialize in the historical calibration of such variables and provide simulations of future expected outcomes to the companies who require them.For example, let&amp;rsquo;s suppose that we receive the expected returns of the Google shares as per the following distribution# This modelling is given by the third party and in theory we don&#39;t know it google &amp;lt;- rnorm(10000, mean = 0.">
 
 <meta property="og:title" content="Generate scenarios correlated to existing ones - The cuRious Risk ManageR">
 <meta property="og:type" content="article">
-<meta property="og:url" content="/post/22_01_2018_simulations/">
+<meta property="og:url" content="/post/22_01_2018_simulations.knit/">
 <meta property="og:image" content="/images/default.png">
 <meta property="og:site_name" content="The cuRious Risk ManageR">
-<meta property="og:description" content="In quantitative finance we often look at simulations of some market risk factors like equity returns or interest rate changes.There are many third party companies who specialize in the historical calibration of such variables and provide simulations of future expected outcomes to the companies who require them.For example, let’s suppose that we receive the expected returns of the Google shares as per the following distribution# This modelling is given by the third party and in theory we don&amp;#39;t know it google &amp;lt;- rnorm(10000, mean = 0.">
+<meta property="og:description" content="In quantitative finance we often look at simulations of some market risk factors like equity returns or interest rate changes.There are many third party companies who specialize in the historical calibration of such variables and provide simulations of future expected outcomes to the companies who require them.For example, let&amp;rsquo;s suppose that we receive the expected returns of the Google shares as per the following distribution# This modelling is given by the third party and in theory we don&#39;t know it google &amp;lt;- rnorm(10000, mean = 0.">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="The cuRious Risk ManageR">
-<meta name="twitter:url" content="/post/22_01_2018_simulations/">
+<meta name="twitter:url" content="/post/22_01_2018_simulations.knit/">
 <meta name="twitter:title" content="Generate scenarios correlated to existing ones - The cuRious Risk ManageR">
-<meta name="twitter:description" content="In quantitative finance we often look at simulations of some market risk factors like equity returns or interest rate changes.There are many third party companies who specialize in the historical calibration of such variables and provide simulations of future expected outcomes to the companies who require them.For example, let’s suppose that we receive the expected returns of the Google shares as per the following distribution# This modelling is given by the third party and in theory we don&amp;#39;t know it google &amp;lt;- rnorm(10000, mean = 0.">
+<meta name="twitter:description" content="In quantitative finance we often look at simulations of some market risk factors like equity returns or interest rate changes.There are many third party companies who specialize in the historical calibration of such variables and provide simulations of future expected outcomes to the companies who require them.For example, let&amp;rsquo;s suppose that we receive the expected returns of the Google shares as per the following distribution# This modelling is given by the third party and in theory we don&#39;t know it google &amp;lt;- rnorm(10000, mean = 0.">
 <meta name="twitter:image" content="/images/default.png">
 
 
@@ -67,8 +67,8 @@
     },
     "description": "In quantitative finance we often look at simulations of some market risk factors like equity returns or interest rate changes.
 There are many third party companies who specialize in the historical calibration of such variables and provide simulations of future expected outcomes to the companies who require them.
-For example, let’s suppose that we receive the expected returns of the Google shares as per the following distribution
-# This modelling is given by the third party and in theory we don&#39;t know it google &lt;- rnorm(10000, mean = 0."
+For example, let&rsquo;s suppose that we receive the expected returns of the Google shares as per the following distribution
+# This modelling is given by the third party and in theory we don't know it google &lt;- rnorm(10000, mean = 0."
   }
 </script>
 
@@ -132,9 +132,12 @@ For example, let’s suppose that we receive the expected returns of the Google 
   
 
   <div class="article-body"><p>In quantitative finance we often look at simulations of some market risk factors like equity returns or interest rate changes.</p>
+
 <p>There are many third party companies who specialize in the historical calibration of such variables and provide simulations of future expected outcomes to the companies who require them.</p>
-<p>For example, let’s suppose that we receive the expected returns of the Google shares as per the following distribution</p>
-<pre class="r"><code># This modelling is given by the third party and in theory we don&#39;t know it
+
+<p>For example, let&rsquo;s suppose that we receive the expected returns of the Google shares as per the following distribution</p>
+
+<pre><code class="language-r"># This modelling is given by the third party and in theory we don't know it
 google &lt;- rnorm(10000, mean = 0.01, sd = 0.20) %&gt;% 
   tibble(google_returns = .)
 
@@ -144,11 +147,20 @@ ggplot(data = google, aes(x = google_returns)) +
   labs(title = &quot;Google Shares&quot;,
         subtitle = &quot;One Year forward distribution&quot;) +
   xlab(&quot;One year forward return&quot;) + 
-  ylab(&quot;Density&quot;)</code></pre>
-<p><img src="/post/22_01_2018_simulations_files/figure-html/Google-1.png" width="672" /></p>
-<p>We now want to simulate the distribution of another risk factor which is not provided by the third party but that is usefull for us. Let’s say it is the distribution of the Facebook shares which we imagine to: * be distributed as a normal random variable * have a 5% expected return and * being quite volatile (30% annual volatility) * have the same number of points as the simulations provided by the third party (10000 points)</p>
+  ylab(&quot;Density&quot;)
+</code></pre>
+
+<p><img src="22_01_2018_simulations_files/figure-html/Google-1.png" width="672" /></p>
+
+<p>We now want to simulate the distribution of another risk factor which is not provided by the third party but that is usefull for us. Let&rsquo;s say it is the distribution of the Facebook shares which we imagine to:
+* be distributed as a normal random variable
+* have a 5% expected return and
+* being quite volatile (30% annual volatility)
+* have the same number of points as the simulations provided by the third party (10000 points)</p>
+
 <p>We model therefore the distribution as follows:</p>
-<pre class="r"><code># This modelling is given by the third party and in theory we don&#39;t know it
+
+<pre><code class="language-r"># This modelling is given by the third party and in theory we don't know it
 fb &lt;- rnorm(10000, mean = 0.05, sd = 0.30) %&gt;% 
   tibble(fb_returns = .)
 
@@ -158,65 +170,102 @@ ggplot(data = fb, aes(x = fb_returns)) +
   labs(title = &quot;Facebook Shares&quot;,
         subtitle = &quot;One Year forward distribution&quot;) +
   xlab(&quot;One year forward return&quot;) + 
-  ylab(&quot;Density&quot;)</code></pre>
-<p><img src="/post/22_01_2018_simulations_files/figure-html/Facebook-1.png" width="672" /></p>
-<p>Let’s now look at the correlation between the two variables:</p>
-<pre class="r"><code>Returns &lt;- google %&gt;% 
+  ylab(&quot;Density&quot;)
+</code></pre>
+
+<p><img src="22_01_2018_simulations_files/figure-html/Facebook-1.png" width="672" /></p>
+
+<p>Let&rsquo;s now look at the correlation between the two variables:</p>
+
+<pre><code class="language-r">Returns &lt;- google %&gt;% 
   cbind(fb) %&gt;% 
   as.tibble()
 
-cor(Returns$fb_returns, Returns$google_returns)</code></pre>
-<pre><code>## [1] -0.001258588</code></pre>
-<p><img src="/post/22_01_2018_simulations_files/figure-html/Correlation_graph-1.png" width="672" /></p>
-<p>We can notice that performing the simple simulation doesn’t allow us to impose a correlation structure with the data provided by the third party provider.</p>
-<p>How can we generate a random variable with a defined correlation to an existing one? A very elegant solution was provided by user <strong>whuber</strong> at the following link <a href="https://stats.stackexchange.com/a/313138" class="uri">https://stats.stackexchange.com/a/313138</a> and by using the following function</p>
-<pre class="r"><code>complement &lt;- function(y, rho, x) {
+cor(Returns$fb_returns, Returns$google_returns)
+</code></pre>
+
+<pre><code>## [1] -0.006370259
+</code></pre>
+
+<p><img src="22_01_2018_simulations_files/figure-html/Correlation_graph-1.png" width="672" /></p>
+
+<p>We can notice that performing the simple simulation doesn&rsquo;t allow us to impose a correlation structure with the data provided by the third party provider.</p>
+
+<p>How can we generate a random variable with a defined correlation to an existing one?
+A very elegant solution was provided by user <strong>whuber</strong> at the following link <a href="https://stats.stackexchange.com/a/313138">https://stats.stackexchange.com/a/313138</a> and by using the following function</p>
+
+<pre><code class="language-r">complement &lt;- function(y, rho, x) {
   if (missing(x)) x &lt;- rnorm(length(y)) # Optional: supply a default if `x` is not given
   y.perp &lt;- residuals(lm(x ~ y))
   rho * sd(y.perp) * y + y.perp * sd(y) * sqrt(1 - rho^2)
-}</code></pre>
+}
+</code></pre>
+
 <p>In this function <em>x</em> is our Facebook uncorrelated scenario , <em>rho</em> is the correlation level and <em>y</em> is the Google scenario as provided by the third party.</p>
+
 <p>We apply this function imposing an 80% correlation</p>
-<pre class="r"><code>Returns %&lt;&gt;%  
+
+<pre><code class="language-r">Returns %&lt;&gt;%  
   mutate(fb_correlated = complement(.$google_returns,0.8, .$fb_returns))
 
-cor(Returns$google_returns, Returns$fb_correlated)</code></pre>
-<pre><code>## [1] 0.8</code></pre>
-<p><img src="/post/22_01_2018_simulations_files/figure-html/Add_Correlation_Graph-1.png" width="672" /></p>
+cor(Returns$google_returns, Returns$fb_correlated)
+</code></pre>
+
+<pre><code>## [1] 0.8
+</code></pre>
+
+<p><img src="22_01_2018_simulations_files/figure-html/Add_Correlation_Graph-1.png" width="672" /></p>
+
 <p>There is just one last thing to do: compare the distributions of the two Facebook simulations</p>
-<pre class="r"><code>Returns %&gt;% 
+
+<pre><code class="language-r">Returns %&gt;% 
   select(contains(&quot;fb&quot;)) %&gt;% 
   gather(simulation_type, simulation_value) %&gt;% 
   ggplot(aes(x = simulation_value, colour = simulation_type)) +
   geom_density() +
   scale_x_continuous(labels = percent) + 
-  labs(title = &quot;Facebook Shares&#39; simulations&quot;) +
+  labs(title = &quot;Facebook Shares' simulations&quot;) +
   xlab(&quot;One year forward return&quot;) + 
-  ylab(&quot;Density&quot;)</code></pre>
-<p><img src="/post/22_01_2018_simulations_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+  ylab(&quot;Density&quot;)
+</code></pre>
+
+<p><img src="22_01_2018_simulations_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+
 <p>We can notice that the marginal distribution of the correlated scenario is much different from the original one.</p>
+
 <p>There is therefore one additional step before we finish: we need to rescale the marginal distribution.</p>
-<pre class="r"><code>Rescaled_fb_correlated &lt;- Returns %&gt;%
+
+<pre><code class="language-r">Rescaled_fb_correlated &lt;- Returns %&gt;%
   select(contains(&quot;correlated&quot;)) %&gt;%
   scale() %&gt;% 
   multiply_by(0.3) %&gt;% 
   add(0.05)
 
 Returns %&lt;&gt;% 
-  mutate(fb_correlated_scaled = Rescaled_fb_correlated)</code></pre>
+  mutate(fb_correlated_scaled = Rescaled_fb_correlated)
+</code></pre>
+
 <p>We can now check that the the marginals are comparable and that the correlation structure is still at the desired level</p>
-<pre class="r"><code>Returns %&gt;% 
+
+<pre><code class="language-r">Returns %&gt;% 
   select(contains(&quot;fb&quot;)) %&gt;% 
   gather(simulation_type, simulation_value) %&gt;% 
   ggplot(aes(x = simulation_value, colour = simulation_type)) +
   geom_density() +
   scale_x_continuous(labels = percent) + 
-  labs(title = &quot;Facebook Shares&#39; simulations&quot;) +
+  labs(title = &quot;Facebook Shares' simulations&quot;) +
   xlab(&quot;One year forward return&quot;) + 
-  ylab(&quot;Density&quot;)</code></pre>
-<p><img src="/post/22_01_2018_simulations_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre class="r"><code>cor(Returns$google_returns, Returns$fb_correlated)</code></pre>
-<pre><code>## [1] 0.8</code></pre>
+  ylab(&quot;Density&quot;)
+</code></pre>
+
+<p><img src="22_01_2018_simulations_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+
+<pre><code class="language-r">cor(Returns$google_returns, Returns$fb_correlated)
+</code></pre>
+
+<pre><code>## [1] 0.8
+</code></pre>
+
 <p>The new facebook scenario is now both correlated and in line with the density we want.</p>
 </div>
 
@@ -231,6 +280,8 @@ Returns %&lt;&gt;%
       <div>
         <ul class="p-terms">
           
+          <li><a href="/categories/r/">R</a></li>
+          
           <li><a href="/categories/simulations/">simulations</a></li>
           
         </ul>
@@ -238,21 +289,6 @@ Returns %&lt;&gt;%
     </section>
     
     
-    
-    <section class="bordered">
-      <header>
-        <div class="panel-title">TAGS</div>
-      </header>
-      <div>
-        <ul class="p-terms">
-          
-          <li><a href="/tags/r/">R</a></li>
-          
-          <li><a href="/tags/simulations/">simulations</a></li>
-          
-        </ul>
-      </div>
-    </section>
     
     
   </footer>
@@ -275,6 +311,10 @@ Returns %&lt;&gt;%
       
       <a href="/post/22_01_2018_simulations/" class="list-group-item">Generate scenarios correlated to existing ones</a>
       
+      <a href="/post/22_01_2018_simulations.knit/" class="list-group-item">Generate scenarios correlated to existing ones</a>
+      
+      <a href="/post/22_01_2018_simulations.utf8/" class="list-group-item">Generate scenarios correlated to existing ones</a>
+      
       <a href="/post/22_01_2018_first_post/" class="list-group-item">My first post</a>
       
       <a href="/categories/" class="list-group-item">Categories</a>
@@ -283,15 +323,11 @@ Returns %&lt;&gt;%
       
       <a href="/post/" class="list-group-item">Posts</a>
       
-      <a href="/tags/r/" class="list-group-item">R</a>
-      
-      <a href="/tags/simulations/" class="list-group-item">Simulations</a>
+      <a href="/categories/r/" class="list-group-item">R</a>
       
       <a href="/categories/simulations/" class="list-group-item">Simulations</a>
       
       <a href="/tags/" class="list-group-item">Tags</a>
-      
-      <a href="/" class="list-group-item">The cuRious Risk ManageR</a>
       
     </div>
   </section>
@@ -303,9 +339,11 @@ Returns %&lt;&gt;%
     </div>
     <div class="list-group">
       
-      <a href="/categories/personal" class="list-group-item">personal</a>
+      <a href="/categories/r" class="list-group-item">r</a>
       
       <a href="/categories/simulations" class="list-group-item">simulations</a>
+      
+      <a href="/categories/personal" class="list-group-item">personal</a>
       
     </div>
   </section>
@@ -315,10 +353,6 @@ Returns %&lt;&gt;%
       <div class="panel-title">TAG</div>
     </div>
     <div class="list-group">
-      
-      <a href="/tags/r" class="list-group-item">r</a>
-      
-      <a href="/tags/simulations" class="list-group-item">simulations</a>
       
     </div>
   </section>

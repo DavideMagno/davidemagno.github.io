@@ -6,20 +6,45 @@
     <description>Recent content in R on The cuRious Risk ManageR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 23 Jul 2015 21:13:14 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jan 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Hello R Markdown</title>
-      <link>/post/2015-07-23-r-rmarkdown/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
+      <title>Generate scenarios correlated to existing ones</title>
+      <link>/post/22_01_2018_simulations/</link>
+      <pubDate>Mon, 29 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/2015-07-23-r-rmarkdown/</guid>
-      <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-You can embed an R code chunk like this:
-summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
+      <guid>/post/22_01_2018_simulations/</guid>
+      <description>In quantitative finance we often look at simulations of some market risk factors like equity returns or interest rate changes.
+There are many third party companies who specialize in the historical calibration of such variables and provide simulations of future expected outcomes to the companies who require them.
+For example, let’s suppose that we receive the expected returns of the Google shares as per the following distribution
+# This modelling is given by the third party and in theory we don&amp;#39;t know it google &amp;lt;- rnorm(10000, mean = 0.</description>
+    </item>
+    
+    <item>
+      <title>Generate scenarios correlated to existing ones</title>
+      <link>/post/22_01_2018_simulations.knit/</link>
+      <pubDate>Mon, 29 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/22_01_2018_simulations.knit/</guid>
+      <description>In quantitative finance we often look at simulations of some market risk factors like equity returns or interest rate changes.
+There are many third party companies who specialize in the historical calibration of such variables and provide simulations of future expected outcomes to the companies who require them.
+For example, let&amp;rsquo;s suppose that we receive the expected returns of the Google shares as per the following distribution
+# This modelling is given by the third party and in theory we don&#39;t know it google &amp;lt;- rnorm(10000, mean = 0.</description>
+    </item>
+    
+    <item>
+      <title>Generate scenarios correlated to existing ones</title>
+      <link>/post/22_01_2018_simulations.utf8/</link>
+      <pubDate>Mon, 29 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/22_01_2018_simulations.utf8/</guid>
+      <description>In quantitative finance we often look at simulations of some market risk factors like equity returns or interest rate changes.
+There are many third party companies who specialize in the historical calibration of such variables and provide simulations of future expected outcomes to the companies who require them.
+For example, let&amp;rsquo;s suppose that we receive the expected returns of the Google shares as per the following distribution
+# This modelling is given by the third party and in theory we don&#39;t know it google &amp;lt;- rnorm(10000, mean = 0.</description>
     </item>
     
   </channel>
