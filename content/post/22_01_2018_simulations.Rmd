@@ -1,9 +1,8 @@
 ---
-title: "Generate a scenarios correlated to existing ones"
+title: "Generate scenarios correlated to existing ones"
 author: "Davide Magno"
 date: "2018-01-29"
 output: html_document
-categories: [finance, dplyr]
 ---
 
 ```{r setup, include=FALSE}
@@ -66,7 +65,9 @@ Returns <- google %>%
   as.tibble()
 
 cor(Returns$fb_returns, Returns$google_returns)
+```
 
+```{r Correlation_graph, echo=FALSE}
 ggplot(data = Returns, aes(x = google_returns, y = fb_returns)) +
   geom_point() +
   scale_x_continuous(labels = percent) +
@@ -98,7 +99,9 @@ Returns %<>%
   mutate(fb_correlated = complement(.$google_returns,0.8, .$fb_returns))
 
 cor(Returns$google_returns, Returns$fb_correlated)
+```
 
+```{r Add_Correlation_Graph, echo = FALSE}
 ggplot(data = Returns, aes(x = google_returns, y = fb_correlated)) +
   geom_point() +
   scale_x_continuous(labels = percent) +
@@ -110,7 +113,7 @@ ggplot(data = Returns, aes(x = google_returns, y = fb_correlated)) +
 
 There is just one last thing to do: compare the distributions of the two Facebook simulations
 
-```{r}
+```{r, warning = FALSE}
 Returns %>% 
   select(contains("fb")) %>% 
   gather(simulation_type, simulation_value) %>% 
