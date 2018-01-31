@@ -146,9 +146,15 @@ ggplot(data = google, aes(x = google_returns)) +
   xlab(&quot;One year forward return&quot;) + 
   ylab(&quot;Density&quot;)</code></pre>
 <p><img src="/post/22_01_2018_simulations_files/figure-html/Google-1.png" width="672" /></p>
-<p>We now want to simulate the distribution of another risk factor which is not provided by the third party but that is usefull for us. Let’s say it is the distribution of the Facebook shares which we imagine to: * be distributed as a normal random variable * have a 5% expected return and * being quite volatile (30% annual volatility) * have the same number of points as the simulations provided by the third party (10000 points)</p>
+<p>We now want to simulate the distribution of another risk factor which is not provided by the third party but that is usefull for us. Let’s say it is the distribution of the Facebook shares which we imagine to:</p>
+<ol style="list-style-type: decimal">
+<li>be distributed as a normal random variable</li>
+<li>have a 5% expected return and</li>
+<li>being quite volatile (30% annual volatility)</li>
+<li>have the same number of points as the simulations provided by the third party (10000 points)</li>
+</ol>
 <p>We model therefore the distribution as follows:</p>
-<pre class="r"><code># This modelling is given by the third party and in theory we don&#39;t know it
+<pre class="r"><code># This modelling is our internal one and we can therefore control it
 fb &lt;- rnorm(10000, mean = 0.05, sd = 0.30) %&gt;% 
   tibble(fb_returns = .)
 
@@ -166,7 +172,7 @@ ggplot(data = fb, aes(x = fb_returns)) +
   as.tibble()
 
 cor(Returns$fb_returns, Returns$google_returns)</code></pre>
-<pre><code>## [1] -0.001258588</code></pre>
+<pre><code>## [1] -0.0009351151</code></pre>
 <p><img src="/post/22_01_2018_simulations_files/figure-html/Correlation_graph-1.png" width="672" /></p>
 <p>We can notice that performing the simple simulation doesn’t allow us to impose a correlation structure with the data provided by the third party provider.</p>
 <p>How can we generate a random variable with a defined correlation to an existing one? A very elegant solution was provided by user <strong>whuber</strong> at the following link <a href="https://stats.stackexchange.com/a/313138" class="uri">https://stats.stackexchange.com/a/313138</a> and by using the following function</p>
@@ -217,7 +223,7 @@ Returns %&lt;&gt;%
 <p><img src="/post/22_01_2018_simulations_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <pre class="r"><code>cor(Returns$google_returns, Returns$fb_correlated)</code></pre>
 <pre><code>## [1] 0.8</code></pre>
-<p>The new facebook scenario is now both correlated and in line with the density we want.</p>
+<p>The new Facebook scenario is now both correlated and in line with the density we want.</p>
 </div>
 
   <footer class="article-footer">
