@@ -1,0 +1,69 @@
+---
+title: Convert foreign currency valuations
+author: Davide Magno
+date: '2018-02-14'
+slug: convert-foreign-currency-valuations
+tags: R
+---
+
+
+
+<p>One of the most common problems when dealign with financial data is to have assets (or liabilities) denominated in a currency that is different from the domestic one.</p>
+<p>I propose a tidy solution to this problem that involves no use of for cycles.</p>
+<p>The principle of the solution is that converting each currency can be done in parallel using the <strong>map</strong> function while the consolidation of the results will be done using the <strong>reduce</strong> logic.</p>
+<p>I am a big fan of the tidyverse and therefore I will start loading the required packages</p>
+<pre class="r"><code>library(purrr)
+library(stringr)
+library(tibble)
+library(magrittr)
+library(dplyr)</code></pre>
+<p>I suppose to have a very simple investment dataset made of two fields:</p>
+<ol style="list-style-type: decimal">
+<li>a column with the currency of the investment (local currency being <em>EUR</em>)</li>
+<li>a column with the market value of the investment in local currency</li>
+</ol>
+<pre class="r"><code>Investments &lt;- tibble(ccy = c(rep(&quot;EUR&quot;,2), rep(&quot;JPY&quot;,3), rep(&quot;GBP&quot;,3)),
+                      local_MV = c(1.5e6,1.2e6,2e9,1.5e9,3e9,1e6,1.5e6,2e6)) %&gt;% 
+  mutate(local_MV = as.double(local_MV)) %&gt;% 
+  mutate(EUR_MV = local_MV)</code></pre>
+<p>I then store in a list the current currency FX rates</p>
+<pre class="r"><code>FX &lt;- list(&quot;JPY&quot; = 130, &quot;GBP&quot; = 0.8)</code></pre>
+<p>The first part of the algorithm consists in finding the rows of the Investments database which are subject to FX conversion for each of the currencies that are stored in the <strong>FX</strong> list using the <em>stringr</em> function <em>str_which</em>.</p>
+<p>This is the “parallel” part of the algorithm because it can be done currency by currency independently. We therefore use the <em>map</em> function of the <em>purrr</em> package.</p>
+<pre class="r"><code>pos_ccy &lt;- map(names(FX), ~str_which(Investments$ccy,.)) %&gt;% 
+  set_names(names(FX))
+
+pos_ccy</code></pre>
+<pre><code>## $JPY
+## [1] 3 4 5
+## 
+## $GBP
+## [1] 6 7 8</code></pre>
+<p>This list contains the row numbers for which there is an investment denominated in each of the currencies in the FX universe. We then use this information together with the actual FX rate to convert the investments’ local market value. We now use the <em>map2</em> function.</p>
+<pre class="r"><code>converted_MV &lt;- map2(pos_ccy, FX ,~Investments$local_MV[.x]/.y)
+
+converted_MV</code></pre>
+<pre><code>## $JPY
+## [1] 15384615 11538462 23076923
+## 
+## $GBP
+## [1] 1250000 1875000 2500000</code></pre>
+<p>We can notice that we now have a list made by two different vectors of converted market values. We need to consolidate those into the EUR_MV column in the Investments dataset.</p>
+<p>This is the second step of the algorithm that uses the <em>reduce</em> function of <em>purrr</em></p>
+<pre class="r"><code>Investments$EUR_MV[pos_ccy %&gt;% reduce(c)] &lt;- converted_MV %&gt;% 
+  reduce(c)
+
+Investments</code></pre>
+<pre><code>## # A tibble: 8 x 3
+##     ccy local_MV   EUR_MV
+##   &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1   EUR  1.5e+06  1500000
+## 2   EUR  1.2e+06  1200000
+## 3   JPY  2.0e+09 15384615
+## 4   JPY  1.5e+09 11538462
+## 5   JPY  3.0e+09 23076923
+## 6   GBP  1.0e+06  1250000
+## 7   GBP  1.5e+06  1875000
+## 8   GBP  2.0e+06  2500000</code></pre>
+<p>This function modifies rows of the EUR_MV field by reducing the lists from the map functions into vectors.</p>
+<p>We can notice that the EUR positions have not changed their market value.</p>

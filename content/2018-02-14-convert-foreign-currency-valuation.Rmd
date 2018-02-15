@@ -1,0 +1,78 @@
+---
+title: Convert foreign currency valuations
+author: Davide Magno
+date: '2018-02-14'
+slug: convert-foreign-currency-valuations
+tags: R
+---
+
+One of the most common problems when dealign with financial data is to have assets (or liabilities) denominated in a currency that is different from the domestic one.
+
+I propose a tidy solution to this problem that involves no use of for cycles.
+
+The principle of the solution is that converting each currency can be done in parallel using the **map** function while the consolidation of the results will be done using the **reduce** logic.
+
+I am a big fan of the tidyverse and therefore I will start loading the required packages
+
+```{r message=FALSE, warning=FALSE}
+library(purrr)
+library(stringr)
+library(tibble)
+library(magrittr)
+library(dplyr)
+```
+
+I suppose to have a very simple investment dataset made of two fields:
+
+1) a column with the currency of the investment (local currency being *EUR*)
+2) a column with the market value of the investment in local currency
+
+```{r}
+Investments <- tibble(ccy = c(rep("EUR",2), rep("JPY",3), rep("GBP",3)),
+                      local_MV = c(1.5e6,1.2e6,2e9,1.5e9,3e9,1e6,1.5e6,2e6)) %>% 
+  mutate(local_MV = as.double(local_MV)) %>% 
+  mutate(EUR_MV = local_MV)
+```
+
+I then store in a list the current currency FX rates
+
+```{r}
+FX <- list("JPY" = 130, "GBP" = 0.8)
+```
+
+The first part of the algorithm consists in finding the rows of the Investments database which are subject to FX conversion for each of the currencies that are stored in the **FX** list using the *stringr* function *str_which*. 
+
+This is the "parallel" part of the algorithm because it can be done currency by currency independently. We therefore use the *map* function of the *purrr* package.
+
+```{r}
+pos_ccy <- map(names(FX), ~str_which(Investments$ccy,.)) %>% 
+  set_names(names(FX))
+
+pos_ccy
+```
+
+This list contains the row numbers for which there is an investment denominated in each of the currencies in the FX universe.
+We then use this information together with the actual FX rate to convert the investments' local market value. We now use the *map2* function. 
+
+```{r}  
+converted_MV <- map2(pos_ccy, FX ,~Investments$local_MV[.x]/.y)
+
+converted_MV
+```
+
+We can notice that we now have a list made by two different vectors of converted market values. We need to consolidate those into the EUR_MV column in the Investments dataset.
+
+This is the second step of the algorithm that uses the *reduce* function of *purrr*
+
+```{r}
+Investments$EUR_MV[pos_ccy %>% reduce(c)] <- converted_MV %>% 
+  reduce(c)
+
+Investments
+```
+
+This function modifies rows of the EUR_MV field by reducing the lists from the map functions into vectors.
+
+We can notice that the EUR positions have not changed their market value.
+
+

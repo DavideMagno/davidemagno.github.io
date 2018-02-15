@@ -6,16 +6,72 @@
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 <meta name="generator" content="Hugo 0.34" />
 
-<link rel="alternate" type="application/rss+xml" title="RSS" href="/index.xml">
 
-<link rel="canonical" href="/">
+
+<link rel="canonical" href="/convert-foreign-currency-valuations/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>The cuRious Risk ManageR</title>
+    <title>Convert foreign currency valuations - The cuRious Risk ManageR</title>
     
+<meta name="description" content="One of the most common problems when dealign with financial data is to have assets (or liabilities) denominated in a currency that is different from the domestic one.I propose a tidy solution to this problem that involves no use of for cycles.The principle of the solution is that converting each currency can be done in parallel using the map function while the consolidation of the results will be done using the reduce logic.">
+
+<meta property="og:title" content="Convert foreign currency valuations - The cuRious Risk ManageR">
+<meta property="og:type" content="article">
+<meta property="og:url" content="/convert-foreign-currency-valuations/">
+<meta property="og:image" content="/images/default.png">
+<meta property="og:site_name" content="The cuRious Risk ManageR">
+<meta property="og:description" content="One of the most common problems when dealign with financial data is to have assets (or liabilities) denominated in a currency that is different from the domestic one.I propose a tidy solution to this problem that involves no use of for cycles.The principle of the solution is that converting each currency can be done in parallel using the map function while the consolidation of the results will be done using the reduce logic.">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="The cuRious Risk ManageR">
+<meta name="twitter:url" content="/convert-foreign-currency-valuations/">
+<meta name="twitter:title" content="Convert foreign currency valuations - The cuRious Risk ManageR">
+<meta name="twitter:description" content="One of the most common problems when dealign with financial data is to have assets (or liabilities) denominated in a currency that is different from the domestic one.I propose a tidy solution to this problem that involves no use of for cycles.The principle of the solution is that converting each currency can be done in parallel using the map function while the consolidation of the results will be done using the reduce logic.">
+<meta name="twitter:image" content="/images/default.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"/"
+    },
+    "headline": "Convert foreign currency valuations - The cuRious Risk ManageR",
+    "image": {
+      "@type": "ImageObject",
+      "url": "/images/default.png",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "2018-02-14T00:00:00JST",
+    "dateModified": "2018-02-14T00:00:00JST",
+    "author": {
+      "@type": "Person",
+      "name": "The cuRious Risk ManageR"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "The cuRious Risk ManageR",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "One of the most common problems when dealign with financial data is to have assets (or liabilities) denominated in a currency that is different from the domestic one.
+I propose a tidy solution to this problem that involves no use of for cycles.
+The principle of the solution is that converting each currency can be done in parallel using the map function while the consolidation of the results will be done using the reduce logic."
+  }
+</script>
+
+
     <link href="/css/styles.css" rel="stylesheet">
     
 
@@ -51,87 +107,19 @@
 <div class="row">
   <div class="col-md-8">
 
-    
-
-    <ul class="p-articles">
-      
-      <li><article class="li">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-02-14T00:00:00JST">Feb 14, 2018</time></li>
-      
-      
-    </ul>
-    <h2 class="title"><a href="/convert-foreign-currency-valuations/">Convert foreign currency valuations</a></h2>
-  </header>
-
-  
-  <div class="summary">One of the most common problems when dealign with financial data is to have assets (or liabilities) denominated in a currency that is different from the domestic one.
-I propose a tidy solution to this problem that involves no use of for cycles.
-The principle of the solution is that converting each currency can be done in parallel using the map function while the consolidation of the results will be done using the reduce logic.</div>
-
-  
-  <footer>
-    <a href="/convert-foreign-currency-valuations/" title="Convert foreign currency valuations">Read More…</a>
-  </footer>
-  
-</article>
-</li>
-      
-      <li><article class="li">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-29T00:00:00JST">Jan 29, 2018</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="/post/">post</a></li>
-      
-    </ul>
-    <h2 class="title"><a href="/post/22_01_2018_simulations/">Generate scenarios correlated to existing ones</a></h2>
-  </header>
-
-  
-  <div class="summary">In quantitative finance we often look at simulations of some market risk factors like equity returns or interest rate changes.
-There are many third party companies who specialize in the historical calibration of such variables and provide simulations of future expected outcomes to the companies who require them.
-For example, let’s suppose that we receive the expected returns of the Google shares as per the following distribution
-# This modelling is given by the third party and in theory we don&#39;t know it google &lt;- rnorm(10000, mean = 0.</div>
-
-  
-  <footer>
-    <a href="/post/22_01_2018_simulations/" title="Generate scenarios correlated to existing ones">Read More…</a>
-  </footer>
-  
-</article>
-</li>
-      
-      <li><article class="li">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-22T00:00:00JST">Jan 22, 2018</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="/post/">post</a></li>
-      
-    </ul>
-    <h2 class="title"><a href="/post/22_01_2018_first_post/">My first post</a></h2>
-  </header>
-
-  
-  <div class="summary">Welcome to my blog! I have been working in Financial Risk Management for the last 10+ years in financial instiutions for both Funds and Insurance.
-For the last two years I have started to code quite regularly in R and I have now decided to open my little blog to share any insight I will get during my studying.
-I will write about risk management and financial applications.
-Enough talking about me…let’s start!</div>
-
-  
-  <footer>
-    <a href="/post/22_01_2018_first_post/" title="My first post">Read More…</a>
-  </footer>
-  
-</article>
-</li>
-      
-    </ul>
+    <nav class="p-crumb">
+      <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+        
+        <li class="active">Convert foreign currency valuations</li>
+      </ol>
+    </nav>
 
     
 
-
+    
   </div>
+
   <div class="col-md-4">
     
 <aside class="l-sidebar">
