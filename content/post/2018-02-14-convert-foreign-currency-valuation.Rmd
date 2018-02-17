@@ -13,6 +13,11 @@ The principle of the solution is that converting each currency can be done in pa
 
 I am a big fan of the tidyverse and therefore I will start loading the required packages
 
+```{r, echo = FALSE}
+options(scipen=999)
+```
+
+
 ```{r message=FALSE, warning=FALSE}
 library(purrr)
 library(stringr)
@@ -28,9 +33,11 @@ I suppose to have a very simple investment dataset made of two fields:
 
 ```{r}
 Investments <- tibble(ccy = c(rep("EUR",2), rep("JPY",3), rep("GBP",3)),
-                      local_MV = c(1.5e6,1.2e6,2e9,1.5e9,3e9,1e6,1.5e6,2e6)) %>% 
+                      local_MV = c(1.5e6,1.2e6,2e8,1.5e8,3e8,1e6,1.5e6,2e6)) %>% 
   mutate(local_MV = as.double(local_MV)) %>% 
   mutate(EUR_MV = local_MV)
+
+Investments
 ```
 
 I then store in a list the current currency FX rates
@@ -64,6 +71,7 @@ We can notice that we now have a list made by two different vectors of converted
 This is the second step of the algorithm that uses the *reduce* function of *purrr*
 
 ```{r}
+
 Investments$EUR_MV[pos_ccy %>% reduce(c)] <- converted_MV %>% 
   reduce(c)
 
