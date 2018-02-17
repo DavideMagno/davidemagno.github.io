@@ -13,10 +13,10 @@
     
     <item>
       <title>Convert foreign currency valuations</title>
-      <link>/convert-foreign-currency-valuations/</link>
+      <link>/post/2018-02-14-convert-foreign-currency-valuation/</link>
       <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>/convert-foreign-currency-valuations/</guid>
+      <guid>/post/2018-02-14-convert-foreign-currency-valuation/</guid>
       <description>One of the most common problems when dealign with financial data is to have assets (or liabilities) denominated in a currency that is different from the domestic one.
 I propose a tidy solution to this problem that involves no use of for cycles.
 The principle of the solution is that converting each currency can be done in parallel using the map function while the consolidation of the results will be done using the reduce logic.</description>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="pinterest" content="nopin">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.34" />
+
+
+
+<link rel="canonical" href="/post/2018-02-14-convert-foreign-currency-valuation/">
+
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
+    <title>Convert foreign currency valuations - The cuRious Risk ManageR</title>
+    
+<meta name="description" content="One of the most common problems when dealign with financial data is to have assets (or liabilities) denominated in a currency that is different from the domestic one.I propose a tidy solution to this problem that involves no use of for cycles.The principle of the solution is that converting each currency can be done in parallel using the map function while the consolidation of the results will be done using the reduce logic.">
+
+<meta property="og:title" content="Convert foreign currency valuations - The cuRious Risk ManageR">
+<meta property="og:type" content="article">
+<meta property="og:url" content="/post/2018-02-14-convert-foreign-currency-valuation/">
+<meta property="og:image" content="/images/default.png">
+<meta property="og:site_name" content="The cuRious Risk ManageR">
+<meta property="og:description" content="One of the most common problems when dealign with financial data is to have assets (or liabilities) denominated in a currency that is different from the domestic one.I propose a tidy solution to this problem that involves no use of for cycles.The principle of the solution is that converting each currency can be done in parallel using the map function while the consolidation of the results will be done using the reduce logic.">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="The cuRious Risk ManageR">
+<meta name="twitter:url" content="/post/2018-02-14-convert-foreign-currency-valuation/">
+<meta name="twitter:title" content="Convert foreign currency valuations - The cuRious Risk ManageR">
+<meta name="twitter:description" content="One of the most common problems when dealign with financial data is to have assets (or liabilities) denominated in a currency that is different from the domestic one.I propose a tidy solution to this problem that involves no use of for cycles.The principle of the solution is that converting each currency can be done in parallel using the map function while the consolidation of the results will be done using the reduce logic.">
+<meta name="twitter:image" content="/images/default.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"/"
+    },
+    "headline": "Convert foreign currency valuations - The cuRious Risk ManageR",
+    "image": {
+      "@type": "ImageObject",
+      "url": "/images/default.png",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "2018-02-14T00:00:00JST",
+    "dateModified": "2018-02-14T00:00:00JST",
+    "author": {
+      "@type": "Person",
+      "name": "The cuRious Risk ManageR"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "The cuRious Risk ManageR",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "One of the most common problems when dealign with financial data is to have assets (or liabilities) denominated in a currency that is different from the domestic one.
+I propose a tidy solution to this problem that involves no use of for cycles.
+The principle of the solution is that converting each currency can be done in parallel using the map function while the consolidation of the results will be done using the reduce logic."
+  }
+</script>
+
+
+    <link href="/css/styles.css" rel="stylesheet">
+    
+
+  </head>
+
+  <body>
+    
+    
+    
+
+    <header class="l-header">
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">The cuRious Risk ManageR</a>
+          </div>
+
+          
+
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        
+<div class="row">
+  <div class="col-md-8">
+
+    <nav class="p-crumb">
+      <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+        
+        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/post/" itemprop="url"><span itemprop="title">post</span></a></li>
+        
+        <li class="active">Convert foreign currency valuations</li>
+      </ol>
+    </nav>
+
+    <article class="single">
+  <header>
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-02-14T00:00:00JST">Feb 14, 2018</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="/post/">post</a></li>
+      
+    </ul>
+
+    <h1 class="title">Convert foreign currency valuations</h1>
+  </header>
+
+  
+
+  <div class="article-body"><p>One of the most common problems when dealign with financial data is to have assets (or liabilities) denominated in a currency that is different from the domestic one.</p>
+<p>I propose a tidy solution to this problem that involves no use of for cycles.</p>
+<p>The principle of the solution is that converting each currency can be done in parallel using the <strong>map</strong> function while the consolidation of the results will be done using the <strong>reduce</strong> logic.</p>
+<p>I am a big fan of the tidyverse and therefore I will start loading the required packages</p>
+<pre class="r"><code>library(purrr)
+library(stringr)
+library(tibble)
+library(magrittr)
+library(dplyr)</code></pre>
+<p>I suppose to have a very simple investment dataset made of two fields:</p>
+<ol style="list-style-type: decimal">
+<li>a column with the currency of the investment (local currency being <em>EUR</em>)</li>
+<li>a column with the market value of the investment in local currency</li>
+</ol>
+<pre class="r"><code>Investments &lt;- tibble(ccy = c(rep(&quot;EUR&quot;,2), rep(&quot;JPY&quot;,3), rep(&quot;GBP&quot;,3)),
+                      local_MV = c(1.5e6,1.2e6,2e9,1.5e9,3e9,1e6,1.5e6,2e6)) %&gt;% 
+  mutate(local_MV = as.double(local_MV)) %&gt;% 
+  mutate(EUR_MV = local_MV)</code></pre>
+<p>I then store in a list the current currency FX rates</p>
+<pre class="r"><code>FX &lt;- list(&quot;JPY&quot; = 130, &quot;GBP&quot; = 0.8)</code></pre>
+<p>The first part of the algorithm consists in finding the rows of the Investments database which are subject to FX conversion for each of the currencies that are stored in the <strong>FX</strong> list using the <em>stringr</em> function <em>str_which</em>.</p>
+<p>This is the “parallel” part of the algorithm because it can be done currency by currency independently. We therefore use the <em>map</em> function of the <em>purrr</em> package.</p>
+<pre class="r"><code>pos_ccy &lt;- map(names(FX), ~str_which(Investments$ccy,.)) %&gt;% 
+  set_names(names(FX))
+
+pos_ccy</code></pre>
+<pre><code>## $JPY
+## [1] 3 4 5
+## 
+## $GBP
+## [1] 6 7 8</code></pre>
+<p>This list contains the row numbers for which there is an investment denominated in each of the currencies in the FX universe. We then use this information together with the actual FX rate to convert the investments’ local market value. We now use the <em>map2</em> function.</p>
+<pre class="r"><code>converted_MV &lt;- map2(pos_ccy, FX ,~Investments$local_MV[.x]/.y)
+
+converted_MV</code></pre>
+<pre><code>## $JPY
+## [1] 15384615 11538462 23076923
+## 
+## $GBP
+## [1] 1250000 1875000 2500000</code></pre>
+<p>We can notice that we now have a list made by two different vectors of converted market values. We need to consolidate those into the EUR_MV column in the Investments dataset.</p>
+<p>This is the second step of the algorithm that uses the <em>reduce</em> function of <em>purrr</em></p>
+<pre class="r"><code>Investments$EUR_MV[pos_ccy %&gt;% reduce(c)] &lt;- converted_MV %&gt;% 
+  reduce(c)
+
+Investments</code></pre>
+<pre><code>## # A tibble: 8 x 3
+##     ccy local_MV   EUR_MV
+##   &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1   EUR  1.5e+06  1500000
+## 2   EUR  1.2e+06  1200000
+## 3   JPY  2.0e+09 15384615
+## 4   JPY  1.5e+09 11538462
+## 5   JPY  3.0e+09 23076923
+## 6   GBP  1.0e+06  1250000
+## 7   GBP  1.5e+06  1875000
+## 8   GBP  2.0e+06  2500000</code></pre>
+<p>This function modifies rows of the EUR_MV field by reducing the lists from the map functions into vectors.</p>
+<p>We can notice that the EUR positions have not changed their market value.</p>
+</div>
+
+  <footer class="article-footer">
+    
+    
+    
+    
+    
+    <section class="bordered">
+      <header>
+        <div class="panel-title">TAGS</div>
+      </header>
+      <div>
+        <ul class="p-terms">
+          
+          <li><a href="/tags/r/">R</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+  </footer>
+
+</article>
+
+
+    
+  </div>
+
+  <div class="col-md-4">
+    
+<aside class="l-sidebar">
+
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">LATESTS</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="/post/2018-02-14-convert-foreign-currency-valuation/" class="list-group-item">Convert foreign currency valuations</a>
+      
+      <a href="/post/22_01_2018_simulations/" class="list-group-item">Generate scenarios correlated to existing ones</a>
+      
+      <a href="/post/22_01_2018_first_post/" class="list-group-item">My first post</a>
+      
+      <a href="/categories/" class="list-group-item">Categories</a>
+      
+      <a href="/categories/personal/" class="list-group-item">Personal</a>
+      
+      <a href="/post/" class="list-group-item">Posts</a>
+      
+      <a href="/tags/r/" class="list-group-item">R</a>
+      
+      <a href="/tags/simulations/" class="list-group-item">Simulations</a>
+      
+      <a href="/categories/simulations/" class="list-group-item">Simulations</a>
+      
+      <a href="/tags/" class="list-group-item">Tags</a>
+      
+    </div>
+  </section>
+
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">CATEGORY</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="/categories/personal" class="list-group-item">personal</a>
+      
+      <a href="/categories/simulations" class="list-group-item">simulations</a>
+      
+    </div>
+  </section>
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">TAG</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="/tags/r" class="list-group-item">r</a>
+      
+      <a href="/tags/simulations" class="list-group-item">simulations</a>
+      
+    </div>
+  </section>
+  
+
+</aside>
+
+
+  </div>
+</div>
+
+      </div>
+    </main>
+
+    <footer class="l-footer">
+      <div class="container">
+        <p><span class="h-logo">&copy; The cuRious Risk ManageR</span></p>
+        <aside>
+          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+        </aside>
+      </div>
+    </footer>
+
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

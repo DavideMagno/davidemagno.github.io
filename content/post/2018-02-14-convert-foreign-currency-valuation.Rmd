@@ -1,9 +1,8 @@
 ---
-title: Convert foreign currency valuations
-author: Davide Magno
+title: "Convert foreign currency valuations"
+author: "Davide Magno"
 date: '2018-02-14'
-slug: convert-foreign-currency-valuations
-tags: R
+tags: [R]
 ---
 
 One of the most common problems when dealign with financial data is to have assets (or liabilities) denominated in a currency that is different from the domestic one.

@@ -8,29 +8,29 @@
 
 
 
-<link rel="canonical" href="/post/22_01_2018_first_post/">
+<link rel="canonical" href="/post/convert-foreign-currency-valuations/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>My first post - The cuRious Risk ManageR</title>
+    <title>Convert foreign currency valuations - The cuRious Risk ManageR</title>
     
-<meta name="description" content="Welcome to my blog! I have been working in Financial Risk Management for the last 10&#43; years in financial instiutions for both Funds and Insurance.For the last two years I have started to code quite regularly in R and I have now decided to open my little blog to share any insight I will get during my studying.I will write about risk management and financial applications.Enough talking about me…let’s start!">
+<meta name="description" content="One of the most common problems when dealign with financial data is to have assets (or liabilities) denominated in a currency that is different from the domestic one.I propose a tidy solution to this problem that involves no use of for cycles.The principle of the solution is that converting each currency can be done in parallel using the map function while the consolidation of the results will be done using the reduce logic.">
 
-<meta property="og:title" content="My first post - The cuRious Risk ManageR">
+<meta property="og:title" content="Convert foreign currency valuations - The cuRious Risk ManageR">
 <meta property="og:type" content="article">
-<meta property="og:url" content="/post/22_01_2018_first_post/">
+<meta property="og:url" content="/post/convert-foreign-currency-valuations/">
 <meta property="og:image" content="/images/default.png">
 <meta property="og:site_name" content="The cuRious Risk ManageR">
-<meta property="og:description" content="Welcome to my blog! I have been working in Financial Risk Management for the last 10&#43; years in financial instiutions for both Funds and Insurance.For the last two years I have started to code quite regularly in R and I have now decided to open my little blog to share any insight I will get during my studying.I will write about risk management and financial applications.Enough talking about me…let’s start!">
+<meta property="og:description" content="One of the most common problems when dealign with financial data is to have assets (or liabilities) denominated in a currency that is different from the domestic one.I propose a tidy solution to this problem that involves no use of for cycles.The principle of the solution is that converting each currency can be done in parallel using the map function while the consolidation of the results will be done using the reduce logic.">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="The cuRious Risk ManageR">
-<meta name="twitter:url" content="/post/22_01_2018_first_post/">
-<meta name="twitter:title" content="My first post - The cuRious Risk ManageR">
-<meta name="twitter:description" content="Welcome to my blog! I have been working in Financial Risk Management for the last 10&#43; years in financial instiutions for both Funds and Insurance.For the last two years I have started to code quite regularly in R and I have now decided to open my little blog to share any insight I will get during my studying.I will write about risk management and financial applications.Enough talking about me…let’s start!">
+<meta name="twitter:url" content="/post/convert-foreign-currency-valuations/">
+<meta name="twitter:title" content="Convert foreign currency valuations - The cuRious Risk ManageR">
+<meta name="twitter:description" content="One of the most common problems when dealign with financial data is to have assets (or liabilities) denominated in a currency that is different from the domestic one.I propose a tidy solution to this problem that involves no use of for cycles.The principle of the solution is that converting each currency can be done in parallel using the map function while the consolidation of the results will be done using the reduce logic.">
 <meta name="twitter:image" content="/images/default.png">
 
 
@@ -42,15 +42,15 @@
       "@type": "WebPage",
       "@id":"/"
     },
-    "headline": "My first post - The cuRious Risk ManageR",
+    "headline": "Convert foreign currency valuations - The cuRious Risk ManageR",
     "image": {
       "@type": "ImageObject",
       "url": "/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2018-01-22T00:00:00JST",
-    "dateModified": "2018-01-22T00:00:00JST",
+    "datePublished": "2018-02-14T00:00:00JST",
+    "dateModified": "2018-02-14T00:00:00JST",
     "author": {
       "@type": "Person",
       "name": "The cuRious Risk ManageR"
@@ -65,10 +65,9 @@
         "height": 60
       }
     },
-    "description": "Welcome to my blog! I have been working in Financial Risk Management for the last 10+ years in financial instiutions for both Funds and Insurance.
-For the last two years I have started to code quite regularly in R and I have now decided to open my little blog to share any insight I will get during my studying.
-I will write about risk management and financial applications.
-Enough talking about me…let’s start!"
+    "description": "One of the most common problems when dealign with financial data is to have assets (or liabilities) denominated in a currency that is different from the domestic one.
+I propose a tidy solution to this problem that involves no use of for cycles.
+The principle of the solution is that converting each currency can be done in parallel using the map function while the consolidation of the results will be done using the reduce logic."
   }
 </script>
 
@@ -114,53 +113,11 @@ Enough talking about me…let’s start!"
         
         <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/post/" itemprop="url"><span itemprop="title">post</span></a></li>
         
-        <li class="active">My first post</li>
+        <li class="active">Convert foreign currency valuations</li>
       </ol>
     </nav>
 
-    <article class="single">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-22T00:00:00JST">Jan 22, 2018</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="/post/">post</a></li>
-      
-    </ul>
-
-    <h1 class="title">My first post</h1>
-  </header>
-
-  
-
-  <div class="article-body"><p>Welcome to my blog! I have been working in Financial Risk Management for the last 10+ years in financial instiutions for both Funds and Insurance.</p>
-<p>For the last two years I have started to code quite regularly in R and I have now decided to open my little blog to share any insight I will get during my studying.</p>
-<p>I will write about risk management and financial applications.</p>
-<p>Enough talking about me…let’s start! :-)</p>
-</div>
-
-  <footer class="article-footer">
     
-    
-    
-    <section class="bordered">
-      <header>
-        <div class="panel-title">CATEGORIES</div>
-      </header>
-      <div>
-        <ul class="p-terms">
-          
-          <li><a href="/categories/personal/">personal</a></li>
-          
-        </ul>
-      </div>
-    </section>
-    
-    
-    
-    
-  </footer>
-
-</article>
-
 
     
   </div>
@@ -175,7 +132,7 @@ Enough talking about me…let’s start!"
     </div>
     <div class="list-group">
       
-      <a href="/post/2018-02-14-convert-foreign-currency-valuation/" class="list-group-item">Convert foreign currency valuations</a>
+      <a href="/post/convert-foreign-currency-valuations/" class="list-group-item">Convert foreign currency valuations</a>
       
       <a href="/post/22_01_2018_simulations/" class="list-group-item">Generate scenarios correlated to existing ones</a>
       
